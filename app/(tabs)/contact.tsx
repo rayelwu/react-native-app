@@ -24,7 +24,7 @@ type Group = {
 };
 
 
-const groupData = require('@/assets/data/groups.json');
+const groupData = require('@/assets/data/teams.json');
 const userData = require('@/assets/data/users.json');
 
 
@@ -39,8 +39,8 @@ export default function ContactScreen() {
 
   const [groups, setGroups] = useState<Group[]>(groupData.map((group: any) => ({
     id: group.id,
-    icon: group.icon,
-    title: group.title,
+    avatar: group.avatar,
+    name: group.name,
     count: group.contacts.length,
     contacts: group.contacts.map((contact: string) => {
       const user = userData.find((user: any) => user.id === contact);
@@ -97,17 +97,17 @@ export default function ContactScreen() {
     return (
       <TouchableOpacity
         style={styles.groupItem}
-        onPress={() => selectedTab === 'contact' ? toggleGroup(item.id) : router.push(`/group-detail?id=${item.id}`)}
+        onPress={() => selectedTab === 'contact' ? toggleGroup(item.id) : router.push(`/chat?id=${item.id}`)}
       >
         <View style={styles.iconContainer}>
-          <Image source={{ uri: item.icon }} style={{
+          <Image source={{ uri: item.avatar }} style={{
             width: 24,
             height: 24,
             borderRadius: 12,
           }} />
         </View>
         <View style={styles.contentContainer}>
-          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.title}>{item.name}</Text>
         </View>
         <View style={styles.rightContainer}>
           <Text style={styles.count}>{item.count}</Text>
@@ -150,7 +150,7 @@ export default function ContactScreen() {
             style={[styles.tab, selectedTab === 'group' && styles.activeTab]}
             onPress={() => setSelectedTab('group')}
           >
-            <Text style={[styles.tabText, selectedTab === 'group' && styles.activeTabText]}>Groups</Text>
+            <Text style={[styles.tabText, selectedTab === 'group' && styles.activeTabText]}>Teams</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity
@@ -185,7 +185,7 @@ export default function ContactScreen() {
                   onPress={() => handleMenuItemPress('createContact')}
                 >
                   <FontAwesome name="user-plus" size={16} color="#a1a1a1" style={styles.menuIcon} />
-                  <Text style={styles.menuText}>Create Contact</Text>
+                  <Text style={styles.menuText}>New Contact</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -193,7 +193,7 @@ export default function ContactScreen() {
                   onPress={() => handleMenuItemPress('createGroup')}
                 >
                   <FontAwesome name="users" size={16} color="#a1a1a1" style={styles.menuIcon} />
-                  <Text style={styles.menuText}>Create Group</Text>
+                  <Text style={styles.menuText}>New Group</Text>
                 </TouchableOpacity>
 
 

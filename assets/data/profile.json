@@ -1,8 +1,11 @@
 {
+    "id": "johndoe",
     "name": "John Doe",
     "avatar": "https://via.placeholder.com/150",
     "status": "Online",
     "bio": "I'm a software engineer and I love to code",
     "location": "San Francisco, CA",
-    "website": "https://www.johndoe.com"
+    "website": "https://www.johndoe.com",
+    "email": "john.doe@example.com",
+    "phone": "+1234567890"
 }

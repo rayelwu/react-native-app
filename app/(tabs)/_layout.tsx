@@ -49,7 +49,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Chat',
-          tabBarIcon: ({ color, focused }) => <FontAwesome size={20} name="comments" color={focused ? '#0088ff' :  color} />,
+          tabBarIcon: ({ color, focused }) => <FontAwesome size={20} name="comments" color={focused ? '#0088ff' : color} />,
         }}
       />
       <Tabs.Screen

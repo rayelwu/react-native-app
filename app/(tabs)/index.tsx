@@ -6,11 +6,18 @@ import SearchBox from '@/components/SearchBox';
 import { FontAwesome } from '@expo/vector-icons';
 import { ThemedText } from '@/components/ThemedText';
 const messageData = require('@/assets/data/messages-unread.json');
+const userData = require('@/assets/data/users.json');
+const teamData = require('@/assets/data/teams.json');
 
 export default function ChatScreen() {
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
-  const [filteredMessages, setFilteredMessages] = useState(messageData);
+  const [unreadMessages, setUnreadMessages] = useState(messageData.map((message: any) => ({
+    ...message,
+    sender: userData.find((user: any) => user.id === message.sender_id)
+      ?? teamData.find((team: any) => team.id === message.sender_id),
+  })).filter((message: any) => !!message.sender));
+  const [filteredMessages, setFilteredMessages] = useState(unreadMessages);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -24,13 +31,12 @@ export default function ChatScreen() {
   const handleSearch = (text: string) => {
     setSearchText(text);
     if (text) {
-      const filtered = messageData.filter((message: any) =>
-        message.sender.toLowerCase().includes(text.toLowerCase()) ||
+      const filtered = unreadMessages.filter((message: any) =>
         message.text.toLowerCase().includes(text.toLowerCase())
       );
       setFilteredMessages(filtered);
     } else {
-      setFilteredMessages(messageData);
+      setFilteredMessages(unreadMessages);
     }
   };
 
@@ -39,17 +45,14 @@ export default function ChatScreen() {
       <View style={styles.container}>
         <View style={{ flexDirection: 'row', width: '100%', padding: 10, borderBottomWidth: 1, borderBottomColor: '#e0e0e0', backgroundColor: 'white', justifyContent: 'space-between', gap: 10, alignItems: 'center' }}>
 
-          <View style={{ }}>
-            <SearchBox
-              onSearch={handleSearch}
-              style={{ width: 20 }}
-            />
-          </View>
+          <SearchBox
+            onSearch={handleSearch}
+          />
           <ThemedText style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold', }}>
             Messages
           </ThemedText>
 
-          <TouchableOpacity style={{ }} onPress={() => router.push('/create')}>
+          <TouchableOpacity style={{}} onPress={() => router.push('/create')}>
             <FontAwesome name="plus" size={24} color="#0088ff" />
           </TouchableOpacity>
         </View>
@@ -66,17 +69,21 @@ export default function ChatScreen() {
                 params: { ...item }
               })}
             >
-              <Image source={require('@/assets/images/avatar.jpg')} style={styles.avatar} />
+
+              <Image source={{ uri: item.sender.avatar }} style={styles.avatar} />
+
               <View style={styles.messageContainer}>
                 <View style={styles.messageHeader}>
-                  <Text style={styles.contactName}>{item.sender}</Text>
+                  <Text style={styles.contactName}>{item.sender.name}</Text>
                   <Text style={styles.messageTime}>{item.time}</Text>
                 </View>
                 <View style={styles.messageSummary}>
                   <Text style={styles.messageText} numberOfLines={1} ellipsizeMode="tail">{item.text}</Text>
-                  <Text style={styles.messageBubble} >
-                    {item.messageCountUnread}
-                  </Text>
+                  {item.messageCountUnread > 0 && (
+                    <Text style={styles.messageBubble} >
+                      {item.messageCountUnread}
+                    </Text>
+                  )}
                 </View>
               </View>
             </TouchableOpacity>

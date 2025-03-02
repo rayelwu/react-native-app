@@ -1,0 +1,16 @@
+[
+  {
+    "id": "g_dev_1",
+    "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+    "name": "Dev Team",
+    "expanded": false,
+    "contacts": ["johndoe", "zhangsan", "zhaoliu"]
+  },
+  {
+    "id": "g_prod_1",
+    "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+    "name": "Product Team",
+    "expanded": false,
+    "contacts": ["johndoe", "zhangsan", "lisi", "wangwu", "zhaoliu"]
+  }
+]

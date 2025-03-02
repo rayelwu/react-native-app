@@ -36,7 +36,7 @@ export default function SelectInput({ options, selected, onSelect, multiple = fa
         >
             <View style={{ flex: 1, flexDirection: 'row', gap: 10, borderRadius: 10 }}>
                 {options.map((option) => (
-                    <ThemedText type='small' style={{
+                    <ThemedText key={option.key} type='small' style={{
                         backgroundColor: selected.includes(option.key) ? '#000' : '#fff',
                         padding: 8,
                         borderRadius: 10,

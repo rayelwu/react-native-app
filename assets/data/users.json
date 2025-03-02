@@ -1,26 +1,66 @@
 [
   {
+    "id": "johndoe",
+    "name": "John Doe",
+    "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+    "status": 1,
+    "role": [
+      {
+        "team": "g_dev_1",
+        "role": "leader"
+      },
+      {
+        "team": "g_prod_1",
+        "role": "member"
+      }
+    ]
+  },
+  {
     "id": "zhangsan",
     "name": "Zhang San",
     "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
-    "status": "Online"
+    "status": 1,
+    "role": [
+      {
+        "team": "g_dev_1",
+        "role": "member"
+      }
+    ]
   },
   {
     "id": "lisi",
     "name": "Li Si",
     "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
-    "status": "Offline"
+    "status": 1,
+    "role": [
+      {
+        "team": "g_dev_1",
+        "role": "member"
+      }
+    ]
   },
   {
     "id": "wangwu",
     "name": "Wang Wu",
     "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
-    "status": "Busy"
+    "status": 1,
+    "role": [
+      {
+        "team": "g_dev_1",
+        "role": "member"
+      }
+    ]
   },
   {
     "id": "zhaoliu",
     "name": "Zhao Liu",
     "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
-    "status": "Online"
+    "status": 1,
+    "role": [
+      {
+        "team": "g_dev_1",
+        "role": "member"
+      }
+    ]
   }
 ]

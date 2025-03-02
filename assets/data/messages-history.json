@@ -3,847 +3,847 @@
     "id": "1",
     "text": "Hi, I'm doing good, thanks for asking. How about you?",
     "time": "10:00 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "2",
     "text": "Same here, everything's good. Have you made any plans for vacation yet?",
     "time": "10:01 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "3",
     "text": "Not really. Do you have any ideas?",
     "time": "10:02 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "4",
     "text": "I'm thinking about going to the beach next weekend. What about you?",
     "time": "10:03 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "5",
     "text": "That sounds great! I love the beach. Which one are you planning to visit?",
     "time": "10:05 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "6",
     "text": "I was thinking about Golden Bay. I heard it's less crowded this time of year.",
     "time": "10:07 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "7",
     "text": "Golden Bay is beautiful! Count me in. Should we invite others?",
     "time": "10:10 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "8",
     "text": "Good idea. Let's ask Wangwu and Zhaoliu if they want to join.",
     "time": "10:12 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "9",
     "text": "Hey Wangwu, we're planning a beach trip to Golden Bay next weekend. Interested?",
     "time": "10:15 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "10",
     "text": "That sounds fun! I'd love to join. What day are you thinking?",
     "time": "10:20 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "11",
     "text": "We're thinking Saturday, leaving around 8 am. Does that work for you?",
     "time": "10:22 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "12",
     "text": "Saturday works perfectly. Should I bring anything?",
     "time": "10:25 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "13",
     "text": "Just beach essentials and maybe some snacks to share. We'll organize a small picnic.",
     "time": "10:27 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "14",
     "text": "Zhaoliu, we're going to Golden Bay this Saturday. Want to join us?",
     "time": "10:30 am",
-    "sender": "lisi",
-    "receiver": "zhaoliu"
+    "sender_id": "johndoe",
+    "receiver_id": "zhaoliu"
   },
   {
     "id": "15",
     "text": "I'd love to, but I have a family commitment. Maybe next time!",
     "time": "10:35 am",
-    "sender": "zhaoliu",
-    "receiver": "lisi"
+    "sender_id": "zhaoliu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "16",
     "text": "No problem, we'll plan another trip soon.",
     "time": "10:37 am",
-    "sender": "lisi",
-    "receiver": "zhaoliu"
+    "sender_id": "johndoe",
+    "receiver_id": "zhaoliu"
   },
   {
     "id": "17",
     "text": "Wangwu is in, but Zhaoliu can't make it this time.",
     "time": "10:40 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "18",
     "text": "That's still good. The three of us will have fun!",
     "time": "10:42 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "19",
     "text": "Should we rent a car or take public transportation?",
     "time": "10:45 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "20",
     "text": "Let's drive. I can pick both of you up if that works.",
     "time": "10:47 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "21",
     "text": "Perfect! That makes things easier.",
     "time": "10:50 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "22",
     "text": "Hey, have you checked the weather forecast for Saturday?",
     "time": "11:00 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "23",
     "text": "Not yet. Let me check now.",
     "time": "11:05 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "24",
     "text": "Looks like sunny skies and 28°C. Perfect beach weather!",
     "time": "11:10 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "25",
     "text": "That's great news! I'll make sure to bring extra sunscreen.",
     "time": "11:12 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "26",
     "text": "Good thinking. I'll bring a beach umbrella for some shade.",
     "time": "11:15 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "27",
     "text": "Weather looks perfect for Saturday. Sunny and 28°C!",
     "time": "11:20 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "28",
     "text": "Awesome! I can't wait. It's been too long since I've been to the beach.",
     "time": "11:25 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "29",
     "text": "Same here. It'll be a nice break from work.",
     "time": "11:27 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "30",
     "text": "Do you know if there are any good restaurants near Golden Bay?",
     "time": "11:30 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "31",
     "text": "There's a seafood place called Ocean View that gets great reviews.",
     "time": "11:33 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "32",
     "text": "Sounds perfect for lunch! Let's plan on that.",
     "time": "11:35 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "33",
     "text": "We're thinking of having lunch at Ocean View restaurant. It's supposed to have great seafood.",
     "time": "11:40 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "34",
     "text": "I've heard of that place! Their grilled fish is amazing.",
     "time": "11:45 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "35",
     "text": "Great! Then it's settled. Beach in the morning, Ocean View for lunch.",
     "time": "11:47 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "36",
     "text": "Hey, do you have any beach games we could bring?",
     "time": "12:00 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "37",
     "text": "I have a frisbee and a volleyball. I'll bring both.",
     "time": "12:05 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "38",
     "text": "Perfect! I'll bring a portable speaker for some music.",
     "time": "12:07 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "39",
     "text": "Sounds like we're all set for a great day!",
     "time": "12:10 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "40",
     "text": "By the way, I just remembered I have a beach tent we can use too.",
     "time": "12:15 pm",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "41",
     "text": "That would be perfect! Bring it if it's not too much trouble.",
     "time": "12:20 pm",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "42",
     "text": "No trouble at all. It's lightweight and easy to set up.",
     "time": "12:22 pm",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "43",
     "text": "Hey, I just got an email about a work emergency. I might need to handle it on Friday night.",
     "time": "2:00 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "44",
     "text": "Oh no! Will it affect our Saturday plans?",
     "time": "2:05 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "45",
     "text": "I don't think so, but I might be a bit tired. Still definitely coming though!",
     "time": "2:10 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "46",
     "text": "Don't worry about it. We can take it easy if you're tired.",
     "time": "2:12 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "47",
     "text": "Thanks for understanding. I'll try to wrap it up quickly on Friday.",
     "time": "2:15 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "48",
-    "text": "Hey Lisi, are we still on for Saturday?",
+    "text": "Hey johndoe, are we still on for Saturday?",
     "time": "9:00 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "49",
     "text": "Absolutely! Weather forecast still looks great.",
     "time": "9:05 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "50",
     "text": "Perfect! I'm really looking forward to it.",
     "time": "9:07 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "51",
     "text": "Good morning! Just checking in about tomorrow's beach trip.",
     "time": "9:30 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "52",
     "text": "Morning! Everything's still on. I'll pick you up around 8 am.",
     "time": "9:35 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "53",
     "text": "Perfect. I'll be ready. How did that work emergency go?",
     "time": "9:40 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "54",
     "text": "Not as bad as expected. I should be able to finish everything today.",
     "time": "9:42 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "55",
     "text": "That's good news! See you tomorrow morning then.",
     "time": "9:45 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "56",
     "text": "I'll be picking up Zhangsan first, then you. Should be at your place around 8:15.",
     "time": "10:00 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "57",
     "text": "Sounds good. I'll be ready and waiting outside.",
     "time": "10:05 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "58",
     "text": "Perfect! See you tomorrow morning.",
     "time": "10:07 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "59",
     "text": "Hey, I just realized I don't have your address. Can you send it to me?",
     "time": "4:00 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "60",
     "text": "Sure, it's 123 Maple Street, Apartment 4B.",
     "time": "4:05 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "61",
     "text": "Got it, thanks! See you at 8 am sharp.",
     "time": "4:07 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "62",
     "text": "I'll be ready and waiting!",
     "time": "4:10 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "63",
     "text": "Good morning! I'm about to leave. Are you ready?",
     "time": "7:45 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "64",
     "text": "Good morning! Yes, I'm all set. See you soon!",
     "time": "7:47 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "65",
     "text": "I'm on my way to pick up Zhangsan, then heading to you. About 20 minutes away.",
     "time": "7:50 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "66",
     "text": "Perfect timing! I'm just finishing packing the beach tent.",
     "time": "7:52 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "67",
     "text": "I'm outside your building.",
     "time": "8:00 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "68",
     "text": "Coming down now!",
     "time": "8:01 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "69",
     "text": "We're about 10 minutes away from your place.",
     "time": "8:10 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "70",
     "text": "I'm ready and waiting outside. See you soon!",
     "time": "8:12 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "71",
     "text": "We're here! I see you.",
     "time": "8:18 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "72",
     "text": "The traffic looks good. We should be at Golden Bay in about 45 minutes.",
     "time": "8:25 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "73",
     "text": "Perfect! The weather is beautiful today.",
     "time": "8:27 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "74",
     "text": "I brought some extra water bottles for everyone.",
     "time": "8:30 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "75",
     "text": "That's thoughtful, thanks! It's going to be hot today.",
     "time": "8:32 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "76",
     "text": "We're almost there! The beach looks amazing from here.",
     "time": "9:10 am",
-    "sender": "zhangsan",
-    "receiver": "zhaoliu"
+    "sender_id": "zhangsan",
+    "receiver_id": "zhaoliu"
   },
   {
     "id": "77",
     "text": "Take lots of pictures! Wish I could be there.",
     "time": "9:15 am",
-    "sender": "zhaoliu",
-    "receiver": "zhangsan"
+    "sender_id": "zhaoliu",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "78",
     "text": "We definitely will! We'll plan another trip soon that works with your schedule.",
     "time": "9:17 am",
-    "sender": "zhangsan",
-    "receiver": "zhaoliu"
+    "sender_id": "zhangsan",
+    "receiver_id": "zhaoliu"
   },
   {
     "id": "79",
     "text": "We've arrived! Let's find a good spot to set up.",
     "time": "9:20 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "80",
     "text": "How about over there near the palm trees? It has some shade.",
     "time": "9:22 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "81",
     "text": "That looks perfect! Let's go.",
     "time": "9:23 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "82",
     "text": "The water is so clear and blue! I can't wait to swim.",
     "time": "9:30 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "83",
     "text": "It looks amazing! Let's set up first, then hit the water.",
     "time": "9:32 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "84",
     "text": "I'll help set up the tent. Where should we put it?",
     "time": "9:35 am",
-    "sender": "zhangsan",
-    "receiver": "wangwu"
+    "sender_id": "zhangsan",
+    "receiver_id": "wangwu"
   },
   {
     "id": "85",
     "text": "Let's put it right here, it's a good flat spot with some shade nearby.",
     "time": "9:37 am",
-    "sender": "wangwu",
-    "receiver": "zhangsan"
+    "sender_id": "wangwu",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "86",
     "text": "The tent is up! Who's ready for a swim?",
     "time": "9:50 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "87",
     "text": "I am! Let me just put on some sunscreen first.",
     "time": "9:52 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "88",
     "text": "Good idea. Can I borrow some? I forgot mine.",
     "time": "9:54 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "89",
     "text": "Of course! Here you go.",
     "time": "9:55 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "90",
     "text": "The water feels amazing! You guys should come in!",
     "time": "10:10 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "91",
     "text": "Coming! Race you to that buoy!",
     "time": "10:12 am",
-    "sender": "zhangsan",
-    "receiver": "wangwu"
+    "sender_id": "zhangsan",
+    "receiver_id": "wangwu"
   },
   {
     "id": "92",
     "text": "You're on! Ready, set, go!",
     "time": "10:13 am",
-    "sender": "wangwu",
-    "receiver": "zhangsan"
+    "sender_id": "wangwu",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "93",
     "text": "I'll referee from here! Have fun, guys!",
     "time": "10:14 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "94",
     "text": "That was a good swim! I'm getting hungry though.",
     "time": "11:30 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "95",
     "text": "Me too. Should we have some snacks now or head to the restaurant?",
     "time": "11:32 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "96",
     "text": "Let's have some light snacks now and go to the restaurant around 1 pm.",
     "time": "11:35 am",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "97",
     "text": "Sounds like a plan. I brought some fruit and chips.",
     "time": "11:37 am",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "98",
     "text": "Perfect! I have some sandwiches we can share too.",
     "time": "11:40 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "99",
     "text": "Great! Let's have a little picnic.",
     "time": "11:42 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "100",
     "text": "These sandwiches are delicious, Wangwu! Did you make them yourself?",
     "time": "11:50 am",
-    "sender": "zhangsan",
-    "receiver": "wangwu"
+    "sender_id": "zhangsan",
+    "receiver_id": "wangwu"
   },
   {
     "id": "101",
     "text": "Yes, I did! Glad you like them.",
     "time": "11:52 am",
-    "sender": "wangwu",
-    "receiver": "zhangsan"
+    "sender_id": "wangwu",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "102",
     "text": "You should share your recipe sometime. They're really good!",
     "time": "11:55 am",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "103",
     "text": "Sure thing! It's pretty simple actually.",
     "time": "11:57 am",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "104",
     "text": "Anyone up for a game of frisbee before lunch?",
     "time": "12:15 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "105",
     "text": "I'm in! Let's play!",
     "time": "12:17 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "106",
     "text": "Count me in too!",
     "time": "12:18 pm",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "107",
     "text": "Nice catch, Zhangsan!",
     "time": "12:30 pm",
-    "sender": "wangwu",
-    "receiver": "zhangsan"
+    "sender_id": "wangwu",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "108",
     "text": "Thanks! You're pretty good at this too!",
     "time": "12:32 pm",
-    "sender": "zhangsan",
-    "receiver": "wangwu"
+    "sender_id": "zhangsan",
+    "receiver_id": "wangwu"
   },
   {
     "id": "109",
     "text": "Should we start heading to the restaurant soon?",
     "time": "12:45 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "110",
     "text": "Yes, let's pack up our things and go. I'm getting really hungry!",
     "time": "12:47 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "111",
     "text": "Do we need reservations for Ocean View?",
     "time": "12:50 pm",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "112",
     "text": "I called yesterday and made a reservation for 1 pm, just to be safe.",
     "time": "12:52 pm",
-    "sender": "lisi",
-    "receiver": "wangwu"
+    "sender_id": "johndoe",
+    "receiver_id": "wangwu"
   },
   {
     "id": "113",
     "text": "Great thinking! It's probably busy on weekends.",
     "time": "12:54 pm",
-    "sender": "wangwu",
-    "receiver": "lisi"
+    "sender_id": "wangwu",
+    "receiver_id": "johndoe"
   },
   {
     "id": "114",
     "text": "The restaurant is just a 10-minute walk from here. Shall we go?",
     "time": "12:55 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "115",
     "text": "Let's go! I can't wait to try their seafood.",
     "time": "12:57 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "116",
     "text": "The view from this restaurant is amazing! You can see the whole bay.",
     "time": "1:10 pm",
-    "sender": "wangwu",
-    "receiver": "zhaoliu"
+    "sender_id": "wangwu",
+    "receiver_id": "zhaoliu"
   },
   {
     "id": "117",
     "text": "It sounds wonderful! Take a picture for me!",
     "time": "1:15 pm",
-    "sender": "zhaoliu",
-    "receiver": "wangwu"
+    "sender_id": "zhaoliu",
+    "receiver_id": "wangwu"
   },
   {
     "id": "118",
     "text": "Just sent you one! The food looks delicious too.",
     "time": "1:20 pm",
-    "sender": "wangwu",
-    "receiver": "zhaoliu"
+    "sender_id": "wangwu",
+    "receiver_id": "zhaoliu"
   },
   {
     "id": "119",
     "text": "What are you ordering?",
     "time": "1:25 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   },
   {
     "id": "120",
     "text": "I think I'll try the grilled sea bass. How about you?",
     "time": "1:27 pm",
-    "sender": "zhangsan",
-    "receiver": "lisi"
+    "sender_id": "zhangsan",
+    "receiver_id": "johndoe"
   },
   {
     "id": "121",
     "text": "The seafood paella looks good. I think I'll get that.",
     "time": "1:29 pm",
-    "sender": "lisi",
-    "receiver": "zhangsan"
+    "sender_id": "johndoe",
+    "receiver_id": "zhangsan"
   }
 ]

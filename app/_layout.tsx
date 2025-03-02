@@ -45,6 +45,18 @@ export default function RootLayout() {
         <Stack.Screen name="create-group" options={{
           headerShown: false,
         }} />
+        <Stack.Screen name="create" options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen name="signup" options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen name="login" options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen name="forgot-password" options={{
+          headerShown: false,
+        }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

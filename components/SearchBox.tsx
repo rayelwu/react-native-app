@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '100%',
+        width: 40,
+        height: 40,
         gap: 10,
     },
     headerText: {

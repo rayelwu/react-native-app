@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, FlatList, Image, Switch } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import TextInputBox from '@/components/SearchBox';
+import SearchBox from '@/components/SearchBox';
 import UserListItem from '@/components/UserListItem';
 
 type Contact = {
@@ -74,7 +74,7 @@ export default function CreateGroupScreen() {
                 <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
                     <FontAwesome name="arrow-left" size={24} color="#0088ff" />
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Create New Group</Text>
+                <Text style={styles.headerTitle}>New Group</Text>
                 <TouchableOpacity
                     style={{}}
                     disabled={!groupName || selectedCount === 0}
@@ -105,8 +105,9 @@ export default function CreateGroupScreen() {
                     </View>
 
                     <View style={styles.searchContainer}>
-                        <TextInputBox onSearch={handleSearch} alwaysShow={true} style={{
+                        <SearchBox onSearch={handleSearch} alwaysShow={true} style={{
                             backgroundColor: '#fff',
+                            borderRadius: 10,
                         }} />
                     </View>
 
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: '#fff',
-        paddingVertical: 15,
+        paddingVertical: 8,
         paddingHorizontal: 20,
         borderBottomWidth: 1,
         borderBottomColor: '#e1e4e8',
@@ -171,8 +172,8 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: '#f1f1f1',
-        borderRadius: 8,
-        padding: 12,
+        borderRadius: 10,
+        padding: 10,
         fontSize: 16,
     },
     membersContainer: {
