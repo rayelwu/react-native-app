@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "text": "Hi, I'm doing good, thanks for asking. How about you?",
+    "time": "10:00 am",
+    "sender": "zhangsan",
+    "messageCountUnread": 2
+  },
+  {
+    "id": "2",
+    "text": "Same here, everything's good. Have you made any plans for vacation yet?",
+    "time": "10:01 am",
+    "sender": "lisi",
+    "messageCountUnread": 1
+  },
+  {
+    "id": "3",
+    "text": "Not really. Do you have any ideas?",
+    "time": "10:02 am",
+    "sender": "wangwu",
+    "messageCountUnread": 0
+  },
+  {
+    "id": "4",
+    "text": "I'm thinking about going to the beach next weekend. What about you?",
+    "time": "10:03 am",
+    "sender": "zhaoliu",
+    "messageCountUnread": 0
+  },
+  {
+    "id": "5",
+    "text": "I'm thinking about going to the beach next weekend. What about you?",
+    "time": "10:03 am",
+    "sender": "wangwu",
+    "messageCountUnread": 0
+  },
+  {
+    "id": "6",
+    "text": "I'm thinking about going to the beach next weekend. What about you?",
+    "time": "10:03 am",
+    "sender": "zhaoliu",
+    "messageCountUnread": 7
+  },
+  {
+    "id": "7",
+    "text": "I'm thinking about going to the beach next weekend. What about you?",
+    "time": "10:03 am",
+    "sender": "wangwu",
+    "messageCountUnread": 0
+  },
+  {
+    "id": "8",
+    "text": "I'm thinking about going to the beach next weekend. What about you?",
+    "time": "10:03 am",
+    "sender": "zhaoliu",
+    "messageCountUnread": 0
+  }
+]

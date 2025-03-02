@@ -32,6 +32,19 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
+        <Stack.Screen name="chat" options={{
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
+        <Stack.Screen name="create-group" options={{
+          headerShown: false,
+        }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

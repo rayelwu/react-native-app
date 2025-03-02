@@ -1,0 +1,26 @@
+[
+  {
+    "id": "zhangsan",
+    "name": "Zhang San",
+    "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+    "status": "Online"
+  },
+  {
+    "id": "lisi",
+    "name": "Li Si",
+    "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+    "status": "Offline"
+  },
+  {
+    "id": "wangwu",
+    "name": "Wang Wu",
+    "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
+    "status": "Busy"
+  },
+  {
+    "id": "zhaoliu",
+    "name": "Zhao Liu",
+    "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
+    "status": "Online"
+  }
+]
