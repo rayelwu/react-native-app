@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import DrawingScreen from '@/drawing/DrawingScreen';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,37 +29,6 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-        <Stack.Screen name="chat" options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }} />
-        <Stack.Screen name="create-group" options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name="create" options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name="signup" options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name="login" options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name="forgot-password" options={{
-          headerShown: false,
-        }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <DrawingScreen />
   );
 }
