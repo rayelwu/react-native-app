@@ -62,7 +62,7 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
   const [archorLocation, setArchorLocation] = useState({ x: 0, y: 0 })
   const [handleLocation, setHandleLocation] = useState({ x: 0, y: 0 })
   const [currentMatrix, setCurrentMatrix] = useState(Skia.Matrix());
-  const [enableTransform, setEnableTransform] = useState(false);
+  const [enableMultiTouchSimulating, setEnableMultiTouchSimulating] = useState(false);
   const [initialState, setiInitialState] = useState<null | {
     distance: number,
     angle: number,
@@ -265,10 +265,21 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
           const y = event.nativeEvent.locationY;
 
 
-          if (enableTransform && initialState) {
+          if ((enableMultiTouchSimulating || event.nativeEvent.touches.length === 2) && initialState) {
             const screenLocation = { x, y }
             setHandleLocation(screenLocation)
-            const [touch1, touch2] = [archorLocation, screenLocation];
+            var p1;
+            var p2;
+
+            if (event.nativeEvent.touches.length == 2) {
+              p1 = { x: event.nativeEvent.touches[0].locationX, y: event.nativeEvent.touches[0].locationY };
+              p2 = { x: event.nativeEvent.touches[1].locationX, y: event.nativeEvent.touches[1].locationY };
+            } else {
+              p1 = archorLocation;
+              p2 = screenLocation;
+            }
+            //const [touch1, touch2] = [archorLocation, screenLocation];
+            const [touch1, touch2] = [p1, p2];
             const dx = touch2.x - touch1.x;
             const dy = touch2.y - touch1.y;
             const currentDistance = Math.sqrt(dx * dx + dy * dy);
@@ -314,7 +325,7 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
                 const selectRect = getBoundingBox(drawContext.state.selectedElements)
                 if (selectRect != null) {
                   const rotateOrigin = { x: (selectRect.x + selectRect.width) / 2, y: (selectRect.y + selectRect.height) / 2 }
-                  angleRad = angle({x, y}, rotateOrigin) -  angle(prevLocationRef.current!, rotateOrigin)
+                  angleRad = angle({ x, y }, rotateOrigin) - angle(prevLocationRef.current!, rotateOrigin)
                 }
 
                 resizeElementsBy(
@@ -355,10 +366,18 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
 
 
 
-          if (enableTransform) {
+          if (enableMultiTouchSimulating || nativeEvent.touches.length === 2) {
+            var p1;
+            var p2;
             setCursorScreenLocation({ x: screenX, y: screenY })
-
-            const [touch1, touch2] = [archorLocation, { x, y }];
+            if (nativeEvent.touches.length == 2) {
+              p1 = { x: nativeEvent.touches[0].locationX, y: nativeEvent.touches[0].locationY };
+              p2 = { x: nativeEvent.touches[1].locationX, y: nativeEvent.touches[1].locationY };
+            } else {
+              p1 = archorLocation
+              p2 = { x, y }
+            }
+            const [touch1, touch2] = [p1, p2];
             const dx = touch2.x - touch1.x;
             const dy = touch2.y - touch1.y;
             setiInitialState({
@@ -391,7 +410,7 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
                 drawContext.state.elements,
               );
 
-              
+
               if (el && drawContext.state.selectedElements.length === 0) {
                 drawContext.commands.setSelectedElements(el);
                 drawContext.commands.setSelectionRect(undefined);
@@ -427,7 +446,7 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
           prevLocationRef.current = { x, y };
         }}
         onTouchEnd={() => {
-          if (enableTransform) {
+          if (enableMultiTouchSimulating) {
             setiInitialState(null)
             return;
           }
@@ -459,16 +478,16 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
           {elementComponents}
         </Group>
 
-        <Group>
-          {/* <Circle cx={lastCursorScreenPoint.x} cy={lastCursorScreenPoint.y} color={'#5f52'} r={10} >
-            <DashPathEffect intervals={[20, 20]} />
-          </Circle> */}
-          <Circle cx={cursorScreenLocation.x} cy={cursorScreenLocation.y} color={'#5f5'} r={10} />
-          <Circle cx={handleLocation.x} cy={handleLocation.y} color={'#5f55'} r={10} />
-          <Circle cx={archorLocation.x} cy={archorLocation.y} color={'#fcc'} r={10} />
-          <Line p1={archorLocation} p2={cursorScreenLocation} />
-          <Line p1={archorLocation} p2={handleLocation} />
-        </Group>
+        {enableMultiTouchSimulating &&
+          <Group>
+            <Circle cx={cursorScreenLocation.x} cy={cursorScreenLocation.y} color={'#5f5'} r={10} />
+            <Circle cx={handleLocation.x} cy={handleLocation.y} color={'#5f55'} r={10} />
+            <Circle cx={archorLocation.x} cy={archorLocation.y} color={'#fcc'} r={10} />
+            <Line p1={archorLocation} p2={cursorScreenLocation} />
+            <Line p1={archorLocation} p2={handleLocation} />
+          </Group>
+        }
+
         {
           selectedElements && (
             <SelectionFrame selectedElements={selectedElements} />
@@ -493,28 +512,28 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
         }
       </Canvas>
 
-      <View style={{ flexDirection: 'row', position: 'absolute', gap: 10, top: 10, left: 10 }}>
-        {/* <Button
-          title={'Spin'}
-          onPress={() => spin()}
-        /> */}
+      <View style={{ flexDirection: 'row', margin: 20, position: 'absolute', gap: 10, top: 10, right: 10 }}>
+
+        {enableMultiTouchSimulating && (
+          <Button
+            title={`Set Archor Location (${archorLocation.x.toFixed(0)},${archorLocation.y.toFixed(0)})`}
+            onPress={() => setArchorLocation(cursorScreenLocation)}
+          />
+        )}
+
         <Button
-          title={`锚定点 (${archorLocation.x.toFixed(0)},${archorLocation.y.toFixed(0)})`}
-          onPress={() => setArchorLocation(cursorScreenLocation)}
-        />
-        <Button
-          title={`重置变换`}
+          title={`Reset Transform`}
           onPress={() => {
             setCurrentMatrix(Skia.Matrix())
             setArchorLocation({ x: 0, y: 0 })
             setHandleLocation({ x: 0, y: 0 })
             setCursorScreenLocation({ x: 0, y: 0 })
-            setEnableTransform(false)
+            setEnableMultiTouchSimulating(false)
           }}
         />
         <Button
-          title={`${!enableTransform ? '开启变换' : '关闭变换'}`}
-          onPress={() => setEnableTransform(!enableTransform)}
+          title={`${!enableMultiTouchSimulating ? 'Enable Multi-Touch Simulating' : 'Disable Multi-Touch Simulating'}`}
+          onPress={() => setEnableMultiTouchSimulating(!enableMultiTouchSimulating)}
         />
       </View>
     </View>
