@@ -38,6 +38,7 @@ import { pointInRect } from '../utils/functions/pointInRect';
 import { resizeElementsBy } from '../utils/functions/resizeElements';
 import { findElementsInRect } from '../utils/functions/findElementsInRect';
 import { useSharedValue, withTiming } from 'react-native-reanimated';
+import { angle } from '../utils/functions/helpers';
 
 interface MessageProps {
   innerRef: RefObject<SkiaDomView>;
@@ -308,9 +309,18 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
             }
             case 'selection': {
               if (drawContext.state.selectedElements.length > 0) {
+
+                var angleRad = 0;
+                const selectRect = getBoundingBox(drawContext.state.selectedElements)
+                if (selectRect != null) {
+                  const rotateOrigin = { x: (selectRect.x + selectRect.width) / 2, y: (selectRect.y + selectRect.height) / 2 }
+                  angleRad = angle({x, y}, rotateOrigin) -  angle(prevLocationRef.current!, rotateOrigin)
+                }
+
                 resizeElementsBy(
                   x - prevLocationRef.current!.x,
                   y - prevLocationRef.current!.y,
+                  angleRad,
                   drawContext.state.resizeMode,
                   drawContext.state.selectedElements,
                 );

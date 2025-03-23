@@ -1,4 +1,4 @@
-import { mix, Skia } from '@shopify/react-native-skia';
+import { mix, Skia, SkPoint } from '@shopify/react-native-skia';
 
 const TAU = Math.PI * 2;
 
@@ -57,3 +57,15 @@ export const polar2Color = (
   const { r, g, b } = hsv2rgb(h, s, 1);
   return Skia.Color(`rgba(${r},${g},${b},${255})`);
 };
+
+export const distance = (p1: SkPoint, p2: SkPoint): number => {
+  const dx = p1.x - p2.x
+  const dy = p1.y - p2.y
+  return Math.sqrt(dx * dx + dy * dy)
+}
+
+export const angle = (p1: SkPoint, p2: SkPoint): number => {
+  const dx = p1.x - p2.x
+  const dy = p1.y - p2.y
+  return Math.atan2(dy, dx);
+}

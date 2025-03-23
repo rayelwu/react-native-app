@@ -8,14 +8,16 @@ export type DrawingElement = {
   type: DrawingElementType;
   path: SkPath;
 } & (
-  | { type: 'path'; pathType: PathType; path: SkPath; color: SkColor; size: number; }
-  | { type: 'image'; path: SkPath; image: SkImage }
-);
+    | { type: 'path'; pathType: PathType; path: SkPath; color: SkColor; size: number; }
+    | { type: 'image'; path: SkPath; image: SkImage }
+  );
 
 export type Menu = 'drawing' | 'chooseSticker' | 'selection' | 'colors';
 export type Tool = 'draw' | 'selection' | 'sticker';
 
-export type ResizeMode = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'midLeft' | 'midRight' | 'midTop' | 'midBottom';
+export type TransformMode = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
+  | 'midLeft' | 'midRight' | 'midTop' | 'midBottom'
+  | 'rotateTopLeft' | 'rotateTopRight' | 'rotateBottomLeft' | 'rotateBottomRight';
 
 export type UxState = {
   menu: Menu | undefined;
@@ -41,7 +43,7 @@ export type DrawState = {
   elements: DrawingElements;
   selectedElements: DrawingElements;
   currentSelectionRect: SkRect | undefined;
-  resizeMode: ResizeMode | undefined;
+  resizeMode: TransformMode | undefined;
   backgroundColor: SkColor;
   pathType: PathType;
 };
@@ -56,7 +58,7 @@ export type DrawCommands = {
   setPathType: (type: PathType) => void;
   setSelectedElements: (...elements: DrawingElements) => void;
   setSelectionRect: (selection: SkRect | undefined) => void;
-  setResizeMode: (resizeMode: ResizeMode | undefined) => void;
+  setResizeMode: (resizeMode: TransformMode | undefined) => void;
   cleanUseless: () => Promise<void>;
 };
 

@@ -5,6 +5,7 @@ import { DashPathEffect, Group, Rect, SkRect } from '@shopify/react-native-skia'
 import { SelectionResizeHandle } from './SelectionHandle';
 import { DrawingElements } from '../utils/types';
 import { getBoundingBox } from '../utils/functions/getBoundingBox';
+import { SelectionRotateHandle } from './SelectionRotateHandle';
 
 type Props = {
   selectedElements: DrawingElements;
@@ -32,7 +33,7 @@ export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
         color="#4185F418"
         style="fill"
       />
-      {/** Resize handles */}
+      {/* Resize handles */}
       <SelectionResizeHandle
         x={() => boundingBoxRef.current!.x}
         y={() => boundingBoxRef.current!.y}
@@ -53,6 +54,28 @@ export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
         y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height}
         size={SelecctionHandleSize}
       />
+      {/* Rotate handles */}
+      <SelectionRotateHandle
+        x={() => boundingBoxRef.current!.x - 20}
+        y={() => boundingBoxRef.current!.y - 20}
+        rotate={180}
+      />
+      <SelectionRotateHandle
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width + 20}
+        y={() => boundingBoxRef.current!.y - 20}
+        rotate={-90}
+      />
+      <SelectionRotateHandle
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width + 20}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height + 20}
+        rotate={0}
+      />
+      <SelectionRotateHandle
+        x={() => boundingBoxRef.current!.x - 20}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height + 20}
+        rotate={90}
+      />
+      {/* Mid control handlers */}
 
       <SelectionResizeHandle
         x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width / 2}

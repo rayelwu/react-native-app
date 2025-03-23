@@ -2,7 +2,7 @@
 import { SkColor, SkRect, Skia } from '@shopify/react-native-skia';
 import React, { ReactNode, useMemo } from 'react';
 import {
-  DrawContextType, DrawingElement, DrawingElements, DrawState, PathType, ResizeMode,
+  DrawContextType, DrawingElement, DrawingElements, DrawState, PathType, TransformMode,
 } from '../utils/types';
 
 export const DrawContext = React.createContext<DrawContextType | undefined>(
@@ -75,8 +75,9 @@ const createDrawProviderValue = (): DrawContextType => {
       state.currentSelectionRect = rect;
       notifyListeners(state);
     },
-    setResizeMode: (resizeMode: ResizeMode | undefined) => {
+    setResizeMode: (resizeMode: TransformMode | undefined) => {
       state.resizeMode = resizeMode;
+      console.log(resizeMode)
       notifyListeners(state);
     },
     cleanUseless: async () => {

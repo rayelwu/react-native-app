@@ -2,21 +2,24 @@
 import { processTransform2d } from '@shopify/react-native-skia';
 import type { SkRect } from '@shopify/react-native-skia';
 
-import type { DrawingElements, ResizeMode } from '../types';
+import type { DrawingElements, TransformMode } from '../types';
 
 import { getBoundingBox } from './getBoundingBox';
 
 export const resizeElementsBy = (
   sx: number,
   sy: number,
-  resizeMode: ResizeMode | undefined,
+  angleRad = 0,
+  resizeMode: TransformMode | undefined,
   elements: DrawingElements,
 ) => {
   const source = getBoundingBox(elements);
+
   if (source === undefined) {
     return;
   }
-  let dest: SkRect;
+  let dest: SkRect = resizeBounds(sx, sy, 0, 0, source);
+  let rotate = 0;
   switch (resizeMode) {
     case 'topLeft':
       dest = resizeBounds(sx, sy, -sx, -sy, source);
@@ -42,8 +45,11 @@ export const resizeElementsBy = (
     case 'midRight':
       dest = resizeBounds(0, 0, sx, 0, source);
       break;
-    case undefined:
-      dest = resizeBounds(sx, sy, 0, 0, source);
+    case 'rotateTopLeft':
+    case 'rotateTopRight':
+    case 'rotateBottomLeft':
+    case 'rotateBottomRight':
+      rotate = angleRad;
       break;
     default:
       return;
@@ -62,6 +68,7 @@ export const resizeElementsBy = (
     { translateY },
     { scaleX },
     { scaleY },
+    { rotate },
   ]);
   // use to scale elements
   for (let i = 0; i < elements.length; i++) {
