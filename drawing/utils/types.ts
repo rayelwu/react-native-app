@@ -15,7 +15,7 @@ export type DrawingElement = {
 export type Menu = 'drawing' | 'chooseSticker' | 'selection' | 'colors';
 export type Tool = 'draw' | 'selection' | 'sticker';
 
-export type ResizeMode = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+export type ResizeMode = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'midLeft' | 'midRight' | 'midTop' | 'midBottom';
 
 export type UxState = {
   menu: Menu | undefined;

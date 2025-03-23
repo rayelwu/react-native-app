@@ -30,6 +30,18 @@ export const resizeElementsBy = (
     case 'bottomRight':
       dest = resizeBounds(0, 0, sx, sy, source);
       break;
+    case 'midTop':
+      dest = resizeBounds(0, sy, 0, -sy, source);
+      break;
+    case 'midBottom':
+      dest = resizeBounds(0, 0, 0, sy, source);
+      break;
+    case 'midLeft':
+      dest = resizeBounds(sx, 0, -sx, 0, source);
+      break;
+    case 'midRight':
+      dest = resizeBounds(0, 0, sx, 0, source);
+      break;
     case undefined:
       dest = resizeBounds(sx, sy, 0, 0, source);
       break;

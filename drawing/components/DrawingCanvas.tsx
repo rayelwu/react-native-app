@@ -13,14 +13,17 @@ import {
   SkiaDomView,
   SkPoint,
   Skia,
-  useImage,
+  SkMatrix,
+  Circle,
+  toDegrees,
+  Line,
 } from '@shopify/react-native-skia';
 import React, {
   Ref,
   RefAttributes,
   RefObject, useEffect, useMemo, useRef, useState,
 } from 'react';
-import { GestureResponderEvent, StyleProp, ViewStyle } from 'react-native';
+import { Button, GestureResponderEvent, StyleProp, View, ViewStyle } from 'react-native';
 import { useDrawContext } from '../Hooks/useDrawContext';
 import { getBounds } from '../utils/functions/getBounds';
 import { toColor } from '../utils/functions/toColor';
@@ -34,6 +37,7 @@ import { findResizeMode } from '../utils/functions/findResizeMode';
 import { pointInRect } from '../utils/functions/pointInRect';
 import { resizeElementsBy } from '../utils/functions/resizeElements';
 import { findElementsInRect } from '../utils/functions/findElementsInRect';
+import { useSharedValue, withTiming } from 'react-native-reanimated';
 
 interface MessageProps {
   innerRef: RefObject<SkiaDomView>;
@@ -50,7 +54,20 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
   const [showGrid, setShowGrid] = useState(true);
   const [gridSize, setGridSize] = useState(8); // Grid cell size in pixels
 
-  const prevPointRef = useRef<SkPoint>();
+  const prevLocationRef = useRef<SkPoint>();
+
+
+  const [cursorScreenLocation, setCursorScreenLocation] = useState({ x: 0, y: 0 })
+  const [archorLocation, setArchorLocation] = useState({ x: 0, y: 0 })
+  const [handleLocation, setHandleLocation] = useState({ x: 0, y: 0 })
+  const [currentMatrix, setCurrentMatrix] = useState(Skia.Matrix());
+  const [enableTransform, setEnableTransform] = useState(false);
+  const [initialState, setiInitialState] = useState<null | {
+    distance: number,
+    angle: number,
+    center: SkPoint
+  }>(null)
+
 
   useEffect(() => {
     const unsubscribeDraw = drawContext.addListener((state) => {
@@ -169,165 +186,323 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
     );
   }, [showGrid, gridSize]);
 
+
+  function mapPoint(matrix: SkMatrix, point: { x: number, y: number }) {
+    // 获取矩阵的 9 个元素
+    const [a, b, c, d, e, f, g, h, i] = matrix.get();
+
+    // 获取输入点的坐标
+    const x = point.x;
+    const y = point.y;
+
+    // 计算 w'（透视分量）
+    const wPrime = g * x + h * y + i;
+
+    // 避免除以 0 的情况
+    if (wPrime === 0) {
+      return { x: 0, y: 0 }; // 根据实际需求可调整返回值
+    }
+
+    // 计算变换后的坐标 x' 和 y'
+    const xPrime = (a * x + b * y + c) / wPrime;
+    const yPrime = (d * x + e * y + f) / wPrime;
+
+    // 返回新点
+    return { x: xPrime, y: yPrime };
+  }
+
+  function invertMatrix(matrix: SkMatrix): null | SkMatrix {
+    const [a, b, c, d, e, f, g, h, i] = matrix.get();
+
+    // 计算行列式
+    const det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+    if (det === 0) {
+      return null; // 矩阵不可逆
+    }
+
+    const invDet = 1 / det;
+    return Skia.Matrix([
+      (e * i - f * h) * invDet,  // 0
+      (c * h - b * i) * invDet,  // 1
+      (b * f - c * e) * invDet,  // 2
+      (f * g - d * i) * invDet,  // 3
+      (a * i - c * g) * invDet,  // 4
+      (c * d - a * f) * invDet,  // 5
+      (d * h - e * g) * invDet,  // 6
+      (b * g - a * h) * invDet,  // 7
+      (a * e - b * d) * invDet,  // 8
+    ]);
+  }
+  const getWorldPoint = (screenPoint: { x: number, y: number }) => {
+    const inverseMatrix = invertMatrix(currentMatrix);
+    if (inverseMatrix) {
+      return mapPoint(inverseMatrix, screenPoint); // 返回 { x, y }
+    }
+    return screenPoint; // 如果不可逆，返回原始坐标
+  };
+  const updateMatrix = (scale: number, rotation: number, center: { x: number, y: number }) => {
+    const newMatrix = Skia.Matrix()
+      .translate(center.x, center.y) // 平移到中心
+      .scale(scale, scale)          // 应用缩放
+      .rotate(rotation)             // 应用旋转
+      .translate(-center.x, -center.y); // 平移回来
+
+    // 将新变换与当前矩阵组合
+    //const updatedMatrix = currentMatrix.concat(newMatrix);
+    const updatedMatrix = newMatrix
+    setCurrentMatrix(updatedMatrix);
+  };
   return (
-    <Canvas
-      ref={innerRef}
-      style={style}
+    <View>
 
-      onTouchMove={(event: GestureResponderEvent) => {
-        const x = event.nativeEvent.locationX;
-        const y = event.nativeEvent.locationY;
+      <Canvas
+        ref={innerRef}
+        style={[style, { position: 'absolute', backgroundColor: '#0000', top: 0, left: 0 }]}
 
-        switch (uxContext.state.menu) {
-          case undefined:
-          case 'drawing':
-          case 'chooseSticker':
-          case 'colors': {
-            const element = drawContext.state.elements[drawContext.state.elements.length - 1];
-            const xMid = (prevPointRef.current!.x + x) / 2;
-            const yMid = (prevPointRef.current!.y + y) / 2;
-            element.path.quadTo(
-              prevPointRef.current!.x,
-              prevPointRef.current!.y,
-              xMid,
-              yMid,
-            );
+        onTouchMove={(event: GestureResponderEvent) => {
+          const x = event.nativeEvent.locationX;
+          const y = event.nativeEvent.locationY;
 
 
+          if (enableTransform && initialState) {
+            const screenLocation = { x, y }
+            setHandleLocation(screenLocation)
+            const [touch1, touch2] = [archorLocation, screenLocation];
+            const dx = touch2.x - touch1.x;
+            const dy = touch2.y - touch1.y;
+            const currentDistance = Math.sqrt(dx * dx + dy * dy);
+            const currentAngle = Math.atan2(dy, dx);
+
+            const scale = currentDistance / initialState.distance;
+            const rotation = currentAngle - initialState.angle;
+            const center = initialState.center;
+
+            console.log(rotation)
+
+            updateMatrix(scale, toDegrees(rotation), center);
             setElements([...drawContext.state.elements]);
-            break;
+            return;
           }
-          case 'selection': {
-            if (drawContext.state.selectedElements.length > 0) {
-              resizeElementsBy(
-                x - prevPointRef.current!.x,
-                y - prevPointRef.current!.y,
-                drawContext.state.resizeMode,
-                drawContext.state.selectedElements,
+
+          switch (uxContext.state.menu) {
+            case undefined:
+            case 'drawing':
+            case 'chooseSticker':
+            case 'colors': {
+              const element = drawContext.state.elements[drawContext.state.elements.length - 1];
+              const xMid = (prevLocationRef.current!.x + x) / 2;
+              const yMid = (prevLocationRef.current!.y + y) / 2;
+
+              const s = getWorldPoint(prevLocationRef.current!)
+              const e = getWorldPoint({ x: xMid, y: yMid })
+              element.path.quadTo(
+                s.x,
+                s.y,
+                e.x,
+                e.y,
               );
-            } else {
-              if (drawContext.state.currentSelectionRect) {
-                drawContext.commands.setSelectionRect({
-                  x: drawContext.state.currentSelectionRect!.x,
-                  y: drawContext.state.currentSelectionRect!.y,
-                  width: x - drawContext.state.currentSelectionRect!.x,
-                  height: y - drawContext.state.currentSelectionRect!.y,
-                });
-              }
-            }
-            setElements([...drawContext.state.elements]);
-            break;
-          }
-          default:
-            break;
-        }
-        prevPointRef.current = { x, y };
-      }}
-      onTouchStart={({ nativeEvent }: GestureResponderEvent) => {
-        const x = nativeEvent.locationX;
-        const y = nativeEvent.locationY;
 
-        switch (uxContext.state.menu) {
-          case undefined:
-          case 'drawing':
-          case 'chooseSticker':
-          case 'colors': {
-            const { color, size, pathType } = drawContext.state;
 
-            console.log('start', x, y, pathType)
-
-            drawContext.commands.addElement(createPath(x, y, color, size, pathType));
-            break;
-          }
-          case 'selection': {
-            const el = findClosestElementToPoint(
-              { x, y },
-              drawContext.state.elements,
-            );
-
-            if (el && drawContext.state.selectedElements.length === 0) {
-              drawContext.commands.setSelectedElements(el);
-              drawContext.commands.setSelectionRect(undefined);
+              setElements([...drawContext.state.elements]);
               break;
             }
-
-            const bounds = getBoundingBox(drawContext.state.selectedElements);
-
-            if (bounds && pointInRect({ x, y }, bounds)) {
-              drawContext.commands.setResizeMode(
-                findResizeMode({ x, y }, drawContext.state.selectedElements),
-              );
-            } else {
-              if (el) {
-                drawContext.commands.setSelectedElements(el);
+            case 'selection': {
+              if (drawContext.state.selectedElements.length > 0) {
+                resizeElementsBy(
+                  x - prevLocationRef.current!.x,
+                  y - prevLocationRef.current!.y,
+                  drawContext.state.resizeMode,
+                  drawContext.state.selectedElements,
+                );
               } else {
-                drawContext.commands.setSelectedElements();
-                drawContext.commands.setSelectionRect({
-                  x,
-                  y,
-                  width: 0,
-                  height: 0,
-                });
+                if (drawContext.state.currentSelectionRect) {
+                  drawContext.commands.setSelectionRect({
+                    x: drawContext.state.currentSelectionRect!.x,
+                    y: drawContext.state.currentSelectionRect!.y,
+                    width: x - drawContext.state.currentSelectionRect!.x,
+                    height: y - drawContext.state.currentSelectionRect!.y,
+                  });
+                }
               }
+              setElements([...drawContext.state.elements]);
+              break;
             }
-            break;
+            default:
+              break;
           }
-          default:
-            break;
-        }
-        prevPointRef.current = { x, y };
-      }}
-      onTouchEnd={() => {
-        switch (uxContext.state.menu) {
-          case 'selection': {
-            if (drawContext.state.currentSelectionRect) {
-              const elements = findElementsInRect(
-                drawContext.state.currentSelectionRect,
+          prevLocationRef.current = { x, y };
+        }}
+        onTouchStart={({ nativeEvent }: GestureResponderEvent) => {
+          const screenX = nativeEvent.locationX;
+          const screenY = nativeEvent.locationY;
+
+
+
+          // 转换屏幕坐标到世界坐标
+          //const { x, y } = {screenX, screenY};
+          const x = screenX;
+          const y = screenY;
+
+
+
+          if (enableTransform) {
+            setCursorScreenLocation({ x: screenX, y: screenY })
+
+            const [touch1, touch2] = [archorLocation, { x, y }];
+            const dx = touch2.x - touch1.x;
+            const dy = touch2.y - touch1.y;
+            setiInitialState({
+              distance: Math.sqrt(dx * dx + dy * dy),
+              angle: Math.atan2(dy, dx),
+              center: { x: (touch1.x + touch2.x) / 2, y: (touch1.y + touch2.y) / 2 },
+            });
+            prevLocationRef.current = { x, y };
+            return;
+          }
+
+
+          switch (uxContext.state.menu) {
+            case undefined:
+            case 'drawing':
+            case 'chooseSticker':
+            case 'colors': {
+              const { color, size, pathType } = drawContext.state;
+
+              console.log('start', x, y, pathType)
+
+              drawContext.commands.addElement(createPath(x, y, color, size, pathType));
+              break;
+            }
+            case 'selection': {
+              const el = findClosestElementToPoint(
+                { x, y },
                 drawContext.state.elements,
               );
-              if (elements) {
-                drawContext.commands.setSelectedElements(...elements);
+
+              if (el && drawContext.state.selectedElements.length === 0) {
+                drawContext.commands.setSelectedElements(el);
+                drawContext.commands.setSelectionRect(undefined);
+                break;
               }
-              drawContext.commands.setSelectionRect(undefined);
+
+              const bounds = getBoundingBox(drawContext.state.selectedElements);
+
+              if (bounds && pointInRect({ x, y }, bounds)) {
+                drawContext.commands.setResizeMode(
+                  findResizeMode({ x, y }, drawContext.state.selectedElements),
+                );
+              } else {
+                if (el) {
+                  drawContext.commands.setSelectedElements(el);
+                } else {
+                  drawContext.commands.setSelectedElements();
+                  drawContext.commands.setSelectionRect({
+                    x,
+                    y,
+                    width: 0,
+                    height: 0,
+                  });
+                }
+              }
+              break;
             }
-            break;
+            default:
+              break;
           }
-          default:
-            break;
+          prevLocationRef.current = { x, y };
+        }}
+        onTouchEnd={() => {
+          if (enableTransform) {
+            setiInitialState(null)
+            return;
+          }
+          switch (uxContext.state.menu) {
+            case 'selection': {
+              if (drawContext.state.currentSelectionRect) {
+                const elements = findElementsInRect(
+                  drawContext.state.currentSelectionRect,
+                  drawContext.state.elements,
+                );
+                if (elements) {
+                  drawContext.commands.setSelectedElements(...elements);
+                }
+                drawContext.commands.setSelectionRect(undefined);
+              }
+              break;
+            }
+            default:
+              break;
+          }
+        }}
+      >
+
+        <Fill color={'#fefefe'} />
+
+
+        <Group matrix={currentMatrix}>
+          {Grid}
+          {elementComponents}
+        </Group>
+
+        <Group>
+          {/* <Circle cx={lastCursorScreenPoint.x} cy={lastCursorScreenPoint.y} color={'#5f52'} r={10} >
+            <DashPathEffect intervals={[20, 20]} />
+          </Circle> */}
+          <Circle cx={cursorScreenLocation.x} cy={cursorScreenLocation.y} color={'#5f5'} r={10} />
+          <Circle cx={handleLocation.x} cy={handleLocation.y} color={'#5f55'} r={10} />
+          <Circle cx={archorLocation.x} cy={archorLocation.y} color={'#fcc'} r={10} />
+          <Line p1={archorLocation} p2={cursorScreenLocation} />
+          <Line p1={archorLocation} p2={handleLocation} />
+        </Group>
+        {
+          selectedElements && (
+            <SelectionFrame selectedElements={selectedElements} />
+          )
         }
-      }}
-    >
+        {
+          selectionRect && (
+            <Group>
+              <Rect
+                color={'#4185f411'}
+                x={selectionRect.x}
+                y={selectionRect.y}
+                width={selectionRect.width}
+                height={selectionRect.height}
+              >
+                <Paint style="stroke" strokeWidth={2} color="#4185f4">
+                  <DashPathEffect intervals={[4, 4]} />
+                </Paint>
+              </Rect>
+            </Group>
+          )
+        }
+      </Canvas>
 
-      <Fill color={'#fefefe'} />
-
-      {/* Add Grid before drawing elements */}
-      {Grid}
-
-      {elementComponents}
-
-      {
-        selectedElements && (
-          <SelectionFrame selectedElements={selectedElements} />
-        )
-      }
-      {
-        selectionRect && (
-          <Group>
-            <Rect
-              color={'#4185f411'}
-              x={selectionRect.x}
-              y={selectionRect.y}
-              width={selectionRect.width}
-              height={selectionRect.height}
-            >
-              <Paint style="stroke" strokeWidth={2} color="#4185f4">
-                <DashPathEffect intervals={[4, 4]} />
-              </Paint>
-            </Rect>
-          </Group>
-        )
-      }
-    </Canvas>
+      <View style={{ flexDirection: 'row', position: 'absolute', gap: 10, top: 10, left: 10 }}>
+        {/* <Button
+          title={'Spin'}
+          onPress={() => spin()}
+        /> */}
+        <Button
+          title={`锚定点 (${archorLocation.x.toFixed(0)},${archorLocation.y.toFixed(0)})`}
+          onPress={() => setArchorLocation(cursorScreenLocation)}
+        />
+        <Button
+          title={`重置变换`}
+          onPress={() => {
+            setCurrentMatrix(Skia.Matrix())
+            setArchorLocation({ x: 0, y: 0 })
+            setHandleLocation({ x: 0, y: 0 })
+            setCursorScreenLocation({ x: 0, y: 0 })
+            setEnableTransform(false)
+          }}
+        />
+        <Button
+          title={`${!enableTransform ? '开启变换' : '关闭变换'}`}
+          onPress={() => setEnableTransform(!enableTransform)}
+        />
+      </View>
+    </View>
   );
 }
 

@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import React, { useRef } from 'react';
-import { Group, Rect, SkRect } from '@shopify/react-native-skia';
+import { DashPathEffect, Group, Rect, SkRect } from '@shopify/react-native-skia';
 
 import { SelectionResizeHandle } from './SelectionHandle';
 import { DrawingElements } from '../utils/types';
@@ -16,7 +16,7 @@ export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
   const boundingBoxRef = useRef<SkRect | undefined>(undefined);
   boundingBoxRef.current = getBoundingBox(selectedElements);
 
-  return selectedElements.length > 0 ? (
+  return selectedElements.length > 0 && (
     <Group>
       {/** Rect around selected elements */}
       <Rect
@@ -24,7 +24,9 @@ export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
         color="#4185F4"
         strokeWidth={2}
         style="stroke"
-      />
+      >
+        <DashPathEffect intervals={[4, 4]} />
+      </Rect>
       <Rect
         rect={boundingBoxRef.current!}
         color="#4185F418"
@@ -51,6 +53,27 @@ export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
         y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height}
         size={SelecctionHandleSize}
       />
+
+      <SelectionResizeHandle
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width / 2}
+        y={() => boundingBoxRef.current!.y}
+        size={SelecctionHandleSize}
+      />
+      <SelectionResizeHandle
+        x={() => boundingBoxRef.current!.x}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height / 2}
+        size={SelecctionHandleSize}
+      />
+      <SelectionResizeHandle
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width / 2}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height}
+        size={SelecctionHandleSize}
+      />
+      <SelectionResizeHandle
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height / 2}
+        size={SelecctionHandleSize}
+      />
     </Group>
-  ) : null;
+  );
 };

@@ -22,21 +22,24 @@ export const findResizeMode = (
     && point.y <= bounds.y + hitSlop
   ) {
     return 'topLeft';
-  } if (
+  }
+  if (
     point.x >= bounds.x + bounds.width - hitSlop
     && point.x <= bounds.x + bounds.width + hitSlop
     && point.y >= bounds.y - hitSlop
     && point.y <= bounds.y + hitSlop
   ) {
     return 'topRight';
-  } if (
+  }
+  if (
     point.x >= bounds.x + bounds.width - hitSlop
     && point.x <= bounds.x + bounds.width + hitSlop
     && point.y >= bounds.y + bounds.height - hitSlop
     && point.y <= bounds.y + bounds.height + hitSlop
   ) {
     return 'bottomRight';
-  } if (
+  }
+  if (
     point.x >= bounds.x - hitSlop
     && point.x <= bounds.x + hitSlop
     && point.y >= bounds.y + bounds.height - hitSlop
@@ -44,5 +47,42 @@ export const findResizeMode = (
   ) {
     return 'bottomLeft';
   }
+
+
+  if (
+    point.x >= bounds.x + bounds.width / 2 - hitSlop
+    && point.x <= bounds.x + bounds.width / 2 + hitSlop
+    && point.y >= bounds.y - hitSlop
+    && point.y <= bounds.y + hitSlop
+  ) {
+    return 'midTop';
+  }
+  if (
+    point.x >= bounds.x + bounds.width / 2 - hitSlop
+    && point.x <= bounds.x + bounds.width / 2 + hitSlop
+    && point.y >= bounds.y + bounds.height - hitSlop
+    && point.y <= bounds.y + bounds.height + hitSlop
+  ) {
+    return 'midBottom';
+  }
+
+  if (
+    point.x >= bounds.x - hitSlop
+    && point.x <= bounds.x + hitSlop
+    && point.y >= bounds.y + bounds.height / 2 - hitSlop
+    && point.y <= bounds.y + bounds.height / 2 + hitSlop
+  ) {
+    return 'midLeft';
+  }
+
+  if (
+    point.x >= bounds.x + bounds.width - hitSlop
+    && point.x <= bounds.x + bounds.width + hitSlop
+    && point.y >= bounds.y + bounds.height / 2 - hitSlop
+    && point.y <= bounds.y + bounds.height / 2 + hitSlop
+  ) {
+    return 'midRight';
+  }
+
   return undefined;
 };
