@@ -11,7 +11,7 @@ type Props = {
   selectedElements: DrawingElements;
 };
 
-const SelecctionHandleSize = 6;
+export const SelecctionHandleSize = 10;
 
 export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
   const boundingBoxRef = useRef<SkRect | undefined>(undefined);
@@ -56,23 +56,23 @@ export const SelectionFrame: React.FC<Props> = ({ selectedElements }) => {
       />
       {/* Rotate handles */}
       <SelectionRotateHandle
-        x={() => boundingBoxRef.current!.x - 20}
-        y={() => boundingBoxRef.current!.y - 20}
+        x={() => boundingBoxRef.current!.x - 10}
+        y={() => boundingBoxRef.current!.y - 10}
         rotate={180}
       />
       <SelectionRotateHandle
-        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width + 20}
-        y={() => boundingBoxRef.current!.y - 20}
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width + 10}
+        y={() => boundingBoxRef.current!.y - 10}
         rotate={-90}
       />
       <SelectionRotateHandle
-        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width + 20}
-        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height + 20}
+        x={() => boundingBoxRef.current!.x + boundingBoxRef.current!.width + 10}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height + 10}
         rotate={0}
       />
       <SelectionRotateHandle
-        x={() => boundingBoxRef.current!.x - 20}
-        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height + 20}
+        x={() => boundingBoxRef.current!.x - 10}
+        y={() => boundingBoxRef.current!.y + boundingBoxRef.current!.height + 10}
         rotate={90}
       />
       {/* Mid control handlers */}

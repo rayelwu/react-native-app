@@ -77,7 +77,6 @@ const createDrawProviderValue = (): DrawContextType => {
     },
     setResizeMode: (resizeMode: TransformMode | undefined) => {
       state.resizeMode = resizeMode;
-      console.log(resizeMode)
       notifyListeners(state);
     },
     cleanUseless: async () => {
@@ -98,7 +97,7 @@ const createDrawProviderValue = (): DrawContextType => {
 
 export const useDrawProvider = () => {
   const uxContext = useMemo(() => createDrawProviderValue(), []);
-  const retVal: React.FC<{children: ReactNode}> = ({ children }) => (
+  const retVal: React.FC<{ children: ReactNode }> = ({ children }) => (
     <DrawContext.Provider value={uxContext}>{children}</DrawContext.Provider>
   );
   return retVal;

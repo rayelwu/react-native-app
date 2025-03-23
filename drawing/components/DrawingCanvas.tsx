@@ -371,6 +371,8 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
           }
 
 
+          console.log('menu', uxContext.state.menu)
+
           switch (uxContext.state.menu) {
             case undefined:
             case 'drawing':
@@ -389,6 +391,7 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
                 drawContext.state.elements,
               );
 
+              
               if (el && drawContext.state.selectedElements.length === 0) {
                 drawContext.commands.setSelectedElements(el);
                 drawContext.commands.setSelectionRect(undefined);
@@ -397,11 +400,13 @@ export default function DrawingCanvas({ innerRef, style }: MessageProps) {
 
               const bounds = getBoundingBox(drawContext.state.selectedElements);
 
-              if (bounds && pointInRect({ x, y }, bounds)) {
-                drawContext.commands.setResizeMode(
-                  findResizeMode({ x, y }, drawContext.state.selectedElements),
-                );
+              if (bounds && pointInRect({ x, y }, bounds, 30)) {
+                const resizeMode = findResizeMode({ x, y }, drawContext.state.selectedElements)
+                console.log('resizeMode', resizeMode)
+
+                drawContext.commands.setResizeMode(resizeMode);
               } else {
+                drawContext.commands.setResizeMode(undefined);
                 if (el) {
                   drawContext.commands.setSelectedElements(el);
                 } else {

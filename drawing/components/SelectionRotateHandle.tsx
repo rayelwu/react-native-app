@@ -1,5 +1,5 @@
 /* eslint-disable react/function-component-definition */
-import { Group, ImageSVG, Path, Rect, Skia, SkPoint, toDegrees } from '@shopify/react-native-skia';
+import { Circle, Group, ImageSVG, Path, Rect, Skia, SkPoint, toDegrees } from '@shopify/react-native-skia';
 import React from 'react';
 
 
@@ -26,15 +26,18 @@ export const SelectionRotateHandle: React.FC<Props> = ({
   rotate = 0,
   iconScale = 1
 }) => (
-  <Group origin={{ x: x() + offset.x, y: y() + offset.y }} transform={[
-    { rotate: rotate * (Math.PI / 180) },
-  ]}>
+  <Group
+    origin={{ x: x() + offset.x, y: y() + offset.y }}
+    transform={[
+      { rotate: rotate * (Math.PI / 180) },
+    ]}>
     <ImageSVG
       svg={svg}
-      x={x()}
-      y={y()}
-      width={20 * iconScale}
-      height={20 * iconScale}
+      x={x() + offset.x}
+      y={y() + offset.y}
+      width={20}
+      height={20}
     />
+    
   </Group>
 );

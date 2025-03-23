@@ -19,16 +19,17 @@ export const findClosestElementToPoint = (
       return elements[i];
     }
   }
+  const slop = 30;
   // If not, measure distance to the closest path
   const distances = elements
     .map((element) => {
       const rect = getBounds(element);
       // check if point is in rect
       if (
-        point.x >= rect.x - 10
-        && point.x < rect.x + rect.width + 10
-        && point.y >= rect.y - 10
-        && point.y < rect.y + rect.height + 10
+        point.x >= rect.x - slop
+        && point.x < rect.x + rect.width + slop
+        && point.y >= rect.y - slop
+        && point.y < rect.y + rect.height + slop
       ) {
         // Find distance from click to center of element
         const dx = Math.max(rect.x - point.x, point.x - (rect.x + rect.width));

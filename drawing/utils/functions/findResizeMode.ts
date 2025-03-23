@@ -3,6 +3,7 @@ import type { SkPoint } from '@shopify/react-native-skia';
 import type { DrawingElements, TransformMode } from '../types';
 
 import { getBoundingBox } from './getBoundingBox';
+import { SelecctionHandleSize } from '@/drawing/components/SelectionFrame';
 
 
 interface TransformHandleSpot {
@@ -20,25 +21,26 @@ export const findResizeMode = (
     return undefined;
   }
 
+  const rotateHandleMargin = 20;
+  const rotateHandleSlop = 10;
+  const resizeHandleSlop = SelecctionHandleSize;
+
   const spots: TransformHandleSpot[] = [
-    { offset: { x: 0 - 20, y: 0 - 20 }, type: 'rotateTopLeft', hitSlop: 100 },
-    { offset: { x: bounds.width + 20, y: 0 - 20 }, type: 'rotateTopRight', hitSlop: 100 },
-    { offset: { x: bounds.width + 20, y: bounds.height + 20 }, type: 'rotateBottomRight', hitSlop: 100 },
-    { offset: { x: 0 - 20, y: bounds.height + 20 }, type: 'rotateBottomLeft', hitSlop: 100 },
-
-    
-    { offset: { x: 0, y: 0 }, type: 'topLeft', hitSlop: 10 },
-    { offset: { x: bounds.width, y: 0 }, type: 'topRight', hitSlop: 10 },
-    { offset: { x: bounds.width, y: bounds.height }, type: 'bottomRight', hitSlop: 10 },
-    { offset: { x: 0, y: bounds.height }, type: 'bottomLeft', hitSlop: 10 },
-
-    { offset: { x: bounds.width / 2, y: 0 }, type: 'midTop', hitSlop: 10 },
-    { offset: { x: bounds.width / 2, y: bounds.height }, type: 'midBottom', hitSlop: 10 },
-    { offset: { x: 0, y: bounds.height / 2 }, type: 'midLeft', hitSlop: 10 },
-    { offset: { x: bounds.width, y: bounds.height / 2 }, type: 'midRight', hitSlop: 10 },
+    { offset: { x: 0 - rotateHandleMargin, y: 0 - rotateHandleMargin }, type: 'rotateTopLeft', hitSlop: rotateHandleSlop },
+    { offset: { x: bounds.width + rotateHandleMargin, y: 0 - rotateHandleMargin }, type: 'rotateTopRight', hitSlop: rotateHandleSlop },
+    { offset: { x: bounds.width + rotateHandleMargin, y: bounds.height + rotateHandleMargin }, type: 'rotateBottomRight', hitSlop: rotateHandleSlop },
+    { offset: { x: 0 - rotateHandleMargin, y: bounds.height + rotateHandleMargin }, type: 'rotateBottomLeft', hitSlop: rotateHandleSlop },
 
 
+    { offset: { x: 0, y: 0 }, type: 'topLeft', hitSlop: resizeHandleSlop },
+    { offset: { x: bounds.width, y: 0 }, type: 'topRight', hitSlop: resizeHandleSlop },
+    { offset: { x: bounds.width, y: bounds.height }, type: 'bottomRight', hitSlop: resizeHandleSlop },
+    { offset: { x: 0, y: bounds.height }, type: 'bottomLeft', hitSlop: resizeHandleSlop },
 
+    { offset: { x: bounds.width / 2, y: 0 }, type: 'midTop', hitSlop: resizeHandleSlop },
+    { offset: { x: bounds.width / 2, y: bounds.height }, type: 'midBottom', hitSlop: resizeHandleSlop },
+    { offset: { x: 0, y: bounds.height / 2 }, type: 'midLeft', hitSlop: resizeHandleSlop },
+    { offset: { x: bounds.width, y: bounds.height / 2 }, type: 'midRight', hitSlop: resizeHandleSlop },
   ]
 
 
@@ -50,6 +52,8 @@ export const findResizeMode = (
       && point.y >= bounds.y + spot.offset.y - spot.hitSlop
       && point.y <= bounds.y + spot.offset.y + spot.hitSlop
     ) {
+
+      console.log('spot.type', spot.type)
       return spot.type;
     }
   }
